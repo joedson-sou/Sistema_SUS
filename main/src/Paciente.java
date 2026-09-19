@@ -1,36 +1,36 @@
 public class Paciente {
 
     private Long cpf;
-    private String nome_completo;
-    private String cartao_sus;
-    private tipos_atendimento tipo;
+    private String nomeCompleto;
+    private String cartaoSus;
+    private tipos_atendimento tipoAtendimento;
     private Paciente esquerda;
     private Paciente direita;
 
 
-    public Paciente(Long cpf, String nome_completo, String cartao_sus, tipos_atendimento tipo, Paciente esquerda, Paciente direita) {
+    public Paciente(Long cpf, String nomeCompleto, String cartaoSus, tipos_atendimento tipoAtendimento) {
         this.cpf = cpf;
-        this.nome_completo = nome_completo;
-        this.cartao_sus = cartao_sus;
-        this.tipo = tipo;
-        this.esquerda = esquerda;
-        this.direita = direita;
+        this.nomeCompleto = nomeCompleto;
+        this.cartaoSus = cartaoSus;
+        this.tipoAtendimento = tipoAtendimento;
+        this.esquerda = null;
+        this.direita = null;
     }
 
     public Long getCpf() {
         return cpf;
     }
 
-    public String getNome_completo() {
-        return nome_completo;
+    public String getNomeCompleto() {
+        return nomeCompleto;
     }
 
-    public String getCartao_sus() {
-        return cartao_sus;
+    public String getCartaoSus() {
+        return cartaoSus;
     }
 
-    public tipos_atendimento getTipo() {
-        return tipo;
+    public tipos_atendimento getTipoAtendimento() {
+        return tipoAtendimento;
     }
 
     public Paciente getEsquerda() {
@@ -39,6 +39,40 @@ public class Paciente {
 
     public Paciente getDireita() {
         return direita;
+    }
+
+    public void setCartaoSus(String cartaoSus) {
+        this.cartaoSus = cartaoSus;
+    }
+
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public void setTipoAtendimento(tipos_atendimento tipoAtendimento) {
+        this.tipoAtendimento = tipoAtendimento;
+    }
+
+    public void setDireita(Paciente direita) {
+        this.direita = direita;
+    }
+
+    public void setEsquerda(Paciente esquerda) {
+        this.esquerda = esquerda;
+    }
+
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "cartaoSus='" + cartaoSus + '\'' +
+                ", cpf=" + cpf +
+                ", nomeCompleto='" + nomeCompleto + '\'' +
+                ", tipoAtendimento=" + tipoAtendimento +
+                '}';
     }
 }
 
