@@ -8,7 +8,7 @@ public class BST {
         raiz = null;
     }
 
-    public void cadastrarPaciente(long cpf, String nomeCompleto, String cartaoSus, tipos_atendimento tipoAtendimento){
+    public void cadastrarPaciente(Long cpf, String nomeCompleto, String cartaoSus, tipos_atendimento tipoAtendimento){
         Paciente novoPaciente = new Paciente(cpf, nomeCompleto, cartaoSus, tipoAtendimento);
 
         if(raiz == null){
@@ -43,7 +43,7 @@ public class BST {
         }
     }
 
-    public Paciente buscarPaciente(long cpf){
+    public Paciente buscarPaciente(Long cpf){
         Paciente atual = raiz;
         int comparacoes = 0;
 
@@ -73,6 +73,67 @@ public class BST {
         System.out.println("Paciente não cadastrado na triagem do dia");
         System.out.println("Comparações/nós visitados: " + comparacoes);
         return null;
+    }
+
+
+    public void removerPaciente(Long cpf){
+        this.raiz = removerRecursivo(this.raiz, cpf);
+    }
+
+
+    private Paciente removerRecursivo(Paciente raiz, Long cpf) {
+
+        if(raiz == null){
+            return null;
+        }
+
+        if (cpf < raiz.getCpf()){
+            raiz.setEsquerda(removerRecursivo(raiz.getEsquerda(), cpf));
+        }
+
+        else if (cpf > raiz.getCpf()){
+            raiz.setDireita(removerRecursivo(raiz.getDireita(), cpf));
+        }
+
+        // Caso 1: Nó folha(sem filhos)
+        else if(raiz.getEsquerda() == null && raiz.getDireita() == null){
+            return null;
+        }
+
+
+        // Caso 2: Possui apenas um filho (Grau 1)
+        else if (raiz.getEsquerda() == null){
+            return raiz.getDireita();
+        }
+
+        else if (raiz.getDireita() == null){
+            return raiz.getEsquerda();
+        }
+
+        // Caso 3: Possui dois filhos (Grau 2)
+
+        else{
+
+            Paciente sucessor = menorElemento(raiz.getDireita());
+
+            raiz.setCpf(sucessor.getCpf());
+            raiz.setNomeCompleto(sucessor.getNomeCompleto());
+            raiz.setCartaoSus(sucessor.getCartaoSus());
+            raiz.setTipoAtendimento(sucessor.getTipoAtendimento());
+
+            raiz.setDireita(removerRecursivo(raiz.getDireita(), sucessor.getCpf()));
+        }
+        return raiz;
+    }
+
+    public Paciente menorElemento(Paciente no){
+        if (no.getEsquerda() == null){
+            return no;
+        }
+
+        else{
+            return menorElemento(no.getEsquerda());
+        }
     }
 
 
