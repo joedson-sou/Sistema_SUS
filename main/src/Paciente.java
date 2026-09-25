@@ -65,15 +65,7 @@ public class Paciente {
         this.esquerda = esquerda;
     }
 
-    @Override
-    public String toString() {
-        return "Paciente{" +
-                "cartaoSus='" + cartaoSus + '\'' +
-                ", cpf=" + cpf +
-                ", nomeCompleto='" + nomeCompleto + '\'' +
-                ", tipoAtendimento=" + tipoAtendimento +
-                '}';
-    }
+
 }
 
 

@@ -18,6 +18,7 @@ public class Main {
         System.out.println(" 1) CARGA INICIAL DE PACIENTES DO DIA");
         System.out.println("=========================================");
 
+
         arvore.cadastrarPaciente(52481936600L, "Maria Oliveira Souza", "898001234567890", tipos_atendimento.TRIAGEM);
         arvore.cadastrarPaciente(31029487700L, "João Pedro Almeida", "898009876543210", tipos_atendimento.VACINACAO);
         arvore.cadastrarPaciente(70185294300L, "Ana Beatriz Lima", "898004561237890", tipos_atendimento.CONSULTA);
@@ -43,5 +44,21 @@ public class Main {
         System.out.println();
         System.out.println("--- Busca de paciente NÃO CADASTRADO (CPF: 11122233344) ---");
         arvore.buscarPaciente(11122233344L);
+
+        //Testes para CADASTRO de atendimento DIARIO e IMPRESSAO
+        System.out.println();
+        System.out.println("=======================================================================================");
+        System.out.println(" 3) CADASTRANDO ATEDIMENTOS DO DIA E IMPRIMINDO ATENDIMENTOS DO DIA EM ORDEM DE CHEGADA");
+        System.out.println("=======================================================================================");
+        System.out.println();
+
+
+        arvore.cadastrarAtendimentoDoDia(52481936600L, "Maria Oliveira Souza", "898001234567890", tipos_atendimento.TRIAGEM);
+        arvore.cadastrarAtendimentoDoDia(31029487700L, "João Pedro Almeida", "898009876543210", tipos_atendimento.VACINACAO);
+        arvore.cadastrarAtendimentoDoDia(70185294300L, "Ana Beatriz Lima", "898004561237890", tipos_atendimento.CONSULTA);
+        arvore.cadastrarAtendimentoDoDia(19384756200L, "Carlos Eduardo Santos", "898007894561230", tipos_atendimento.TRIAGEM);
+        arvore.cadastrarAtendimentoDoDia(48573920100L, "Fernanda Costa Ribeiro", "898003216549870", tipos_atendimento.VACINACAO);
+
+        arvore.imprimirAtendimentosDoDia(arvore.getAtendimendo());
     }
 }

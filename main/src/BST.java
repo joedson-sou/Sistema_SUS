@@ -3,9 +3,14 @@ import java.util.ArrayList;
 public class BST {
 
     private Paciente raiz;
+    private AtendimendoDoDia atendimendoDoDia;
+    private int contadorChegada;
 
     public BST(){
         raiz = null;
+        atendimendoDoDia = null;
+        this.contadorChegada = 0;
+
     }
 
     public void cadastrarPaciente(Long cpf, String nomeCompleto, String cartaoSus, tipos_atendimento tipoAtendimento){
@@ -21,7 +26,7 @@ public class BST {
 
         while (true){
             if(cpf == atual.getCpf()){
-                System.out.println("Aviso: CPF " + cpf +  "já cadastrado na triagem do dia.");
+                System.out.println("Aviso: CPF " + cpf +  " já cadastrado na triagem do dia.");
                 return;
             }
             else if(cpf < atual.getCpf()){
@@ -136,8 +141,52 @@ public class BST {
         }
     }
 
+    public void cadastrarAtendimentoDoDia(long cpf, String nomeCompleto, String cartaoSus, tipos_atendimento tipoAtendimento){
+
+        Paciente atual = new Paciente(cpf, nomeCompleto, cartaoSus, tipoAtendimento);
+        contadorChegada++;
+
+        atendimendoDoDia = inserirRecursivamente(atendimendoDoDia, contadorChegada, atual);
+
+    }
+
+    private AtendimendoDoDia inserirRecursivamente(AtendimendoDoDia atendimendo, int ordemChegada, Paciente atual) {
+
+        if(atendimendo == null){
+            //Cadastra o primeiro atendimento do dia
+            return new AtendimendoDoDia(atual,  ordemChegada);
+        }
+
+        // Novos atedimentos sempre vao para direita, ja que é em ordem crescente
+        if(ordemChegada < atendimendo.getOrdemDeChegada()){
+            atendimendo.setEsquerda(inserirRecursivamente(atendimendo.getEsquerda(), ordemChegada, atual));
+        }
+        else if (ordemChegada > atendimendo.getOrdemDeChegada()){
+            atendimendo.setDireita(inserirRecursivamente(atendimendo.getDireita(), ordemChegada, atual));
+        }
+        return atendimendo;
+    }
+
+    public void imprimirAtendimentosDoDia(AtendimendoDoDia atendimendo){
+        if(atendimendo != null){
+            //Imprimi NOME e CPF em ordem de chegada
+            System.out.println("- Nome: " + atendimendo.getPaciente().getNomeCompleto() + " | CPF: " + atendimendo.getPaciente().getCpf() + " [Ordem: " + atendimendo.getOrdemDeChegada() + "]");
+
+            //Imprimi atendiementos da esquerda
+            imprimirAtendimentosDoDia(atendimendo.getEsquerda());
+
+            //Imprimi atendiementos da direita
+            imprimirAtendimentosDoDia(atendimendo.getDireita());
+        }
+
+    }
+
 
     public Paciente getRaiz() {
         return raiz;
+    }
+
+    public AtendimendoDoDia getAtendimendo(){
+        return atendimendoDoDia;
     }
 }
