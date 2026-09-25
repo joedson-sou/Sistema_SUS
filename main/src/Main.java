@@ -48,7 +48,7 @@ public class Main {
         //Testes para CADASTRO de atendimento DIARIO e IMPRESSAO
         System.out.println();
         System.out.println("=======================================================================================");
-        System.out.println(" 3) CADASTRANDO ATEDIMENTOS DO DIA E IMPRIMINDO ATENDIMENTOS DO DIA EM ORDEM DE CHEGADA");
+        System.out.println(" 3) CADASTRANDO ATEDIMENTOS DO DIA E IMPRIMINDO ATENDIMENTOS DO DIA EM ORDEM DE CHEGADA | REMOCAO DE PACIENTES");
         System.out.println("=======================================================================================");
         System.out.println();
 
@@ -60,5 +60,21 @@ public class Main {
         arvore.cadastrarAtendimentoDoDia(48573920100L, "Fernanda Costa Ribeiro", "898003216549870", tipos_atendimento.VACINACAO);
 
         arvore.imprimirAtendimentosDoDia(arvore.getAtendimendo());
+
+
+        //Teste para REMOVER PACIENTE
+        System.out.println();
+        System.out.println("--- Busca de paciente CADASTRADO (CPF: 63715928400) ---");
+        arvore.buscarPaciente(63715928400L);
+
+        System.out.println();
+        System.out.println("---Remover o paciente CADASTRADO (CPF: 63715928400) ---");
+        arvore.removerPaciente(63715928400L);
+        arvore.buscarPaciente(63715928400L);
+        System.out.println("---Paciente removido com sucesso ---");
+        System.out.println("Motivo: \nMudou de Bairro");
+
     }
+
+
 }

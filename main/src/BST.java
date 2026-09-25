@@ -55,14 +55,13 @@ public class BST {
         while (atual != null){
             comparacoes++;
 
-            if(cpf == atual.getCpf()){
+            if(cpf.equals(atual.getCpf())){
                 StringBuilder paciente = new StringBuilder();
                 paciente.append("----- Paciente encontrado -----\n");
-                paciente.append("Nome: " + atual.getNomeCompleto());
-                paciente.append("\nCPF: " + atual.getCpf());
-                paciente.append("\nCartão SUS: " + atual.getCartaoSus());
-                paciente.append("\nTipo Atendimento: " + atual.getTipoAtendimento());
-                paciente.append("\nComparações/nós visitados: " + comparacoes);
+                paciente.append("Nome: ").append(atual.getNomeCompleto());
+                paciente.append("\nCPF: ").append(atual.getCpf()).append("\nCartão SUS: ").append(atual.getCartaoSus());
+                paciente.append("\nTipo Atendimento: ").append(atual.getTipoAtendimento());
+                paciente.append("\nComparações/nós visitados: ").append(comparacoes);
                 System.out.println(paciente.toString());
                 return atual;
             }
@@ -147,6 +146,7 @@ public class BST {
         contadorChegada++;
 
         atendimendoDoDia = inserirRecursivamente(atendimendoDoDia, contadorChegada, atual);
+        System.out.println("- Atedimento do paciente " + atual.getNomeCompleto() + " cadastrado com sucesso!\n");
 
     }
 
